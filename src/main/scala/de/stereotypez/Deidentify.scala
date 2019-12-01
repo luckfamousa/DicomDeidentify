@@ -9,6 +9,8 @@ import org.dcm4che3.util.UIDUtils
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
+import ActionCode._
+
 object Deidentify {
   def apply() = new Deidentify()
 }
@@ -123,29 +125,29 @@ class Deidentify() {
 
   private val _cleaningFunctions: mutable.Map[ActionCode, CleaningFunction] = mutable.Map(
     // "X": "remove"
-    new `X` -> _xcleanFunction,
+    `X` -> _xcleanFunction,
     // "C": "clean, that is replace with values of similar meaning known not to contain identifying
     // information and consistent with the VR"
-    new `C` -> _ccleanFunction,
+    `C` -> _ccleanFunction,
     // "D": "replace with a non-zero length value that may be a dummy value and consistent with the VR"
-    new `D` -> _dcleanFunction,
+    `D` -> _dcleanFunction,
     // "Z": "replace with a zero length value, or a non-zero length value that may be a dummy value and consistent with the VR"
-    new `Z` -> _dcleanFunction,
+    `Z` -> _dcleanFunction,
     // "U": "replace with a non-zero length UID that is internally consistent within a set of Instances"
-    new `U` -> _ucleanFunction,
+    `U` -> _ucleanFunction,
     // "K": "keep (unchanged for non-sequence attributes, cleaned for sequences)"
-    new `K` -> _kcleanFunction,
+    `K` -> _kcleanFunction,
     // "X/D": "X unless D is required to maintain IOD conformance (Type 3 versus Type 1)"
-    new `X/D` -> _xcleanFunction,
+    `X/D` -> _xcleanFunction,
     // "X/Z": "X unless Z is required to maintain IOD conformance (Type 3 versus Type 2)"
-    new `X/Z` -> _xcleanFunction,
+    `X/Z` -> _xcleanFunction,
     // "X/Z/D": "X unless Z or D is required to maintain IOD conformance (Type 3 versus Type 2 versus Type 1)"
-    new `X/Z/D` -> _xcleanFunction,
+    `X/Z/D` -> _xcleanFunction,
     // "X/Z/U*": "X unless Z or replacement of contained instance UIDs (U) is required to maintain
     // IOD conformance (Type 3 versus Type 2 versus Type 1 sequences containing UID references)"
-    new `X/Z/U*` -> _xcleanFunction,
+    `X/Z/U*` -> _xcleanFunction,
     // "Z/D": "Z unless D is required to maintain IOD conformance (Type 2 versus Type 1)"
-    new `Z/D` -> _dcleanFunction
+    `Z/D` -> _dcleanFunction
   )
 
   def withCleaningFunction(actionCode: ActionCode, cleaningFunction: CleaningFunction): Deidentify = {

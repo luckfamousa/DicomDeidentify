@@ -1,5 +1,7 @@
 package de.stereotypez
 
+import ActionCode._
+
 case class ConfidentialityProfileAttribute (
   retainLongModifDatesOption: Option[ActionCode],
   retainLongFullDatesOption: Option[ActionCode],
