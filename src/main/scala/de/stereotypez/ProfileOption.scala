@@ -5,32 +5,32 @@ trait ProfileOption {
 }
 
 object BasicProfile extends ProfileOption {
-  def apply(d: Deidentifier) = Some(ActionCode(d.cpa.basicProfile))
+  def apply(d: Deidentifier) = Some(d.cpa.basicProfile)
 }
 object RetainLongModifDatesOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainLongModifDatesOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainLongModifDatesOption
 }
 object RetainLongFullDatesOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainLongFullDatesOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainLongFullDatesOption
 }
 object RetainUIDsOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainUIDsOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainUIDsOption
 }
 object CleanGraphOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.cleanGraphOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.cleanGraphOption
 }
 object RetainPatientCharsOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainPatientCharsOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainPatientCharsOption
 }
 object RetainSafePrivateOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainSafePrivateOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainSafePrivateOption
 }
 object CleanDescOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.cleanDescOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.cleanDescOption
 }
 object RetainDeviceIdentOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.retainDeviceIdentOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.retainDeviceIdentOption
 }
 object CleanStructContOption extends ProfileOption {
-  def apply(d: Deidentifier) = d.cpa.cleanStructContOption.map(s => ActionCode(s))
+  def apply(d: Deidentifier) = d.cpa.cleanStructContOption
 }

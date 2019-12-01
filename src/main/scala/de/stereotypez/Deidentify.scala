@@ -13,24 +13,25 @@ object Deidentify {
   def apply() = new Deidentify()
 }
 
-private class Deidentify() {
+class Deidentify() {
 
+  type Tag = Int
   type TimeShiftFunction = (LocalTime, Date) => Date
   type DateShiftFunction = (LocalDate, Date) => Date
   type DateShiftPAF = Date => Date
   type TimeShiftPAF = Date => Date
-  type CleaningFunction = (Attributes, Int, DateShiftPAF, TimeShiftPAF) => Unit
+  type CleaningFunction = (Attributes, Tag, DateShiftPAF, TimeShiftPAF) => Boolean
 
-  private var _keep = Array.empty[Int]
-  def keep(tags: Array[Int]): Deidentify = {
+  private var _keep: Seq[Tag] = Array.empty[Tag]
+  def keep(tags: Tag*): Deidentify = {
     _keep = tags
     this
   }
 
   // handlers with side effects can directly modify attributes
   // if a handler returns true it will override default (Supp. 142) behavior
-  private var _specialHandlers = ListBuffer.empty[(Attributes, Int) => Boolean]
-  def addSpecialHandler(handler: (Attributes, Int) => Boolean): Deidentify = {
+  private var _specialHandlers = ListBuffer.empty[CleaningFunction]
+  def addSpecialHandler(handler: CleaningFunction): Deidentify = {
     _specialHandlers += handler
     this
   }
@@ -80,6 +81,7 @@ private class Deidentify() {
   // default cleaning functions
   private var _xcleanFunction: CleaningFunction = (att, tag, dsf, tsf) => {
     att.remove(tag)
+    true
   }
   private var _ccleanFunction: CleaningFunction = (att, tag, dsf, tsf) => {
     att.getVR(tag) match {
@@ -92,6 +94,7 @@ private class Deidentify() {
       case vr if vr.isIntType => att.setInt(tag, vr, 0)
       case vr if vr.isInlineBinary => att.setBytes(tag, vr, "dummy".getBytes)
     }
+    true
   }
   private var _dcleanFunction: CleaningFunction = (att, tag, dsf, tsf) => {
     att.getVR(tag) match {
@@ -103,15 +106,19 @@ private class Deidentify() {
       case vr if vr.isIntType => att.setInt(tag, vr, 0)
       case vr if vr.isInlineBinary => att.setBytes(tag, vr, "dummy".getBytes)
     }
+    true
   }
   private var _ucleanFunction: CleaningFunction = (att, tag, dsf, tsf) => {
     att.setString(tag, att.getVR(tag), UIDUtils.createNameBasedUID(att.getBytes(tag)))
+    true
   }
   private var _kcleanFunction: CleaningFunction = (att, tag, dsf, tsf) => {
     if (VR.SQ == att.getVR(tag)) {
       att.remove(tag)
       att.ensureSequence(tag, 0)
+      true
     }
+    else false
   }
 
   private val _cleaningFunctions: mutable.Map[ActionCode, CleaningFunction] = mutable.Map(
@@ -166,7 +173,7 @@ private class Deidentify() {
       case tag if _keep.contains(tag) => ()
 
       // apply special handlers and skip if one returns true
-      case tag if _specialHandlers.exists(_(att, tag)) => ()
+      case tag if _specialHandlers.exists(_(att, tag, dsf, tsf)) => ()
 
       /*
       // recurse over sequences (correct??)

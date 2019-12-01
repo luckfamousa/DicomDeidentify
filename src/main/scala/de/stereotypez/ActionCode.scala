@@ -3,8 +3,7 @@ package de.stereotypez
 import spray.json.{JsString, JsValue, RootJsonFormat}
 import spray.json.DefaultJsonProtocol._
 
-class ActionCode(val code: String) {
-
+object ActionCode {
   implicit object ActionCodeFormat extends RootJsonFormat[ActionCode] {
     override def read(json: JsValue): ActionCode = json.convertTo[String] match {
       case "X" => new `X`
@@ -22,7 +21,7 @@ class ActionCode(val code: String) {
     override def write(obj: ActionCode): JsValue = JsString(obj.code)
   }
 }
-
+class ActionCode(val code: String)
 class PrimitiveActionCode(code: String) extends ActionCode(code)
 class CompoundActionCode(code: String) extends ActionCode(code)
 
