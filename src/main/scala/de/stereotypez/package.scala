@@ -5,7 +5,7 @@ import java.util.Date
 
 import de.stereotypez.ActionCode.ActionCodeFormat
 
-import scala.io.Source
+import scala.io.{BufferedSource, Source}
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
@@ -50,5 +50,5 @@ package object stereotypez {
     }
   }
 
-  val deidentifiers: Seq[Deidentifier] = loadConfidentialityProfileAttributes()
+  lazy val deidentifiers: Seq[Deidentifier] = loadConfidentialityProfileAttributes()
 }

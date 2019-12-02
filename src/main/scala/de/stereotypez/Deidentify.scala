@@ -58,7 +58,7 @@ class Deidentify() {
 
   // will be partially applied with refDate on execute()
   private var _dateShiftFunction: DateShiftFunction = (refDate, d) => {
-    toLocalDate(d).plus(Duration.between(refDate, new Date(0).toInstant))
+    toLocalDateTime(d).plus(Duration.between(toLocalDateTime(refDate), toLocalDateTime(new Date(0))))
   }
   def withDateShiftFunction(dateShiftFunction: DateShiftFunction): Deidentify = {
     _dateShiftFunction = dateShiftFunction
@@ -67,7 +67,7 @@ class Deidentify() {
 
   // will be partially applied with refDate on execute()
   private var _timeShiftFunction: TimeShiftFunction = (refTime, d) => {
-    toLocalDate(d).plus(Duration.between(refTime, new Date(3600 * 1000 * 12).toInstant))
+    toLocalDateTime(d).plus(Duration.between(refTime, toLocalDateTime(new Date(3600 * 1000 * 12))))
   }
   def withTimeShiftFunction(timeShiftFunction: TimeShiftFunction): Deidentify = {
     _timeShiftFunction = timeShiftFunction
@@ -91,10 +91,10 @@ class Deidentify() {
         att.remove(tag)
         att.ensureSequence(tag, 0)
       case vr if vr.isTemporalType => att.setDate(tag, vr, dsf(att.getDate(tag)))
-      case vr if vr == VR.PN => att.setString(tag, vr, "DOE^JOHN")
-      case vr if vr.isStringType => att.setString(tag, vr, "dummy")
+      case vr if vr == VR.PN => att.setString(tag, vr, _dummyFunction(tag))
+      case vr if vr.isStringType => att.setString(tag, vr, _dummyFunction(tag))
       case vr if vr.isIntType => att.setInt(tag, vr, 0)
-      case vr if vr.isInlineBinary => att.setBytes(tag, vr, "dummy".getBytes)
+      case vr if vr.isInlineBinary => att.setBytes(tag, vr, _dummyFunction(tag).getBytes)
     }
     true
   }
@@ -104,9 +104,10 @@ class Deidentify() {
         att.remove(tag)
         att.ensureSequence(tag, 0)
       case vr if vr.isTemporalType => att.setDate(tag, vr, new Date(0))
-      case vr if vr.isStringType => att.setString(tag, vr, "dummy")
+      case vr if vr == VR.PN => att.setString(tag, vr, _dummyFunction(tag))
+      case vr if vr.isStringType => att.setString(tag, vr, _dummyFunction(tag))
       case vr if vr.isIntType => att.setInt(tag, vr, 0)
-      case vr if vr.isInlineBinary => att.setBytes(tag, vr, "dummy".getBytes)
+      case vr if vr.isInlineBinary => att.setBytes(tag, vr, _dummyFunction(tag).getBytes)
     }
     true
   }
@@ -152,6 +153,12 @@ class Deidentify() {
 
   def withCleaningFunction(actionCode: ActionCode, cleaningFunction: CleaningFunction): Deidentify = {
     _cleaningFunctions.put(actionCode, cleaningFunction)
+    this
+  }
+
+  private var _dummyFunction: Tag => String = (tag) => "dummy"
+  def withDummies(default: String, lookup: Map[Tag, String]): Deidentify = {
+    _dummyFunction = (tag: Tag) => lookup.getOrElse(tag, default)
     this
   }
 

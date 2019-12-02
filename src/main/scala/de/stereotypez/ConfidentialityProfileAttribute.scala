@@ -12,9 +12,9 @@ case class ConfidentialityProfileAttribute (
   attributeName: String,
   tag: String,
   retainSafePrivateOption: Option[ActionCode],
-  inStdCompIODFromPS33: Boolean,
+  inStdCompIODFromPS33: Option[Boolean],
   cleanDescOption: Option[ActionCode],
-  retiredFromPS36: Boolean,
+  retiredFromPS36: Option[Boolean],
   retainDeviceIdentOption: Option[ActionCode],
   cleanStructContOption: Option[ActionCode]
 )
