@@ -5,8 +5,8 @@ import ActionCode._
 case class ConfidentialityProfileAttribute (
    attributeName: String,
    tag: String,
-   retiredFromPS36: Option[Boolean],
-   inStdCompIODFromPS33: Option[Boolean],
+   retiredFromPS36: Boolean,
+   inStdCompIODFromPS33: Boolean,
    basicProfile: ActionCode,
    retainSafePrivateOption: Option[ActionCode],
    retainUIDsOption: Option[ActionCode],

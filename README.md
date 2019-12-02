@@ -1,6 +1,6 @@
 # DICOM De-Identify
 
-A small and configurable Scala library to de-identify DICOM files according to Supp. 142.
+A small and configurable Scala library to de-identify DICOM files according to http://dicom.nema.org/medical/dicom/current/output/html/part15.html#table_E.1-1.
 
 ## Using
 
@@ -39,5 +39,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* https://github.com/neurosnap/dicom_codify/ for parsing this horrible  
+* [dicom_codify](https://github.com/neurosnap/dicom_codify/) for parsing [table_E.1-1](http://dicom.nema.org/medical/dicom/current/output/html/part15.html#table_E.1-1)
 
