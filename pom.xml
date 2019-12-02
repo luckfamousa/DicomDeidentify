@@ -67,6 +67,14 @@
     </dependency>
   </dependencies>
 
+  <repositories>
+    <repository>
+      <id>dcm4che-repo</id>
+      <name>Dcm4Che Repository</name>
+      <url>https://www.dcm4che.org/maven2/</url>
+    </repository>
+  </repositories>
+
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>
