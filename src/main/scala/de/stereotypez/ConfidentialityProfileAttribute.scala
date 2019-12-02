@@ -3,18 +3,19 @@ package de.stereotypez
 import ActionCode._
 
 case class ConfidentialityProfileAttribute (
-  retainLongModifDatesOption: Option[ActionCode],
-  retainLongFullDatesOption: Option[ActionCode],
-  basicProfile: ActionCode,
-  retainUIDsOption: Option[ActionCode],
-  cleanGraphOption: Option[ActionCode],
-  retainPatientCharsOption: Option[ActionCode],
-  attributeName: String,
-  tag: String,
-  retainSafePrivateOption: Option[ActionCode],
-  inStdCompIODFromPS33: Option[Boolean],
-  cleanDescOption: Option[ActionCode],
-  retiredFromPS36: Option[Boolean],
-  retainDeviceIdentOption: Option[ActionCode],
-  cleanStructContOption: Option[ActionCode]
+   attributeName: String,
+   tag: String,
+   retiredFromPS36: Option[Boolean],
+   inStdCompIODFromPS33: Option[Boolean],
+   basicProfile: ActionCode,
+   retainSafePrivateOption: Option[ActionCode],
+   retainUIDsOption: Option[ActionCode],
+   retainDeviceIdentOption: Option[ActionCode],
+   retainInstIdentOption: Option[ActionCode],
+   retainPatientCharsOption: Option[ActionCode],
+   retainLongFullDatesOption: Option[ActionCode],
+   retainLongModifDatesOption: Option[ActionCode],
+   cleanDescOption: Option[ActionCode],
+   cleanStructContOption: Option[ActionCode],
+   cleanGraphOption: Option[ActionCode]
 )

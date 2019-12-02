@@ -1,9 +1,12 @@
 package de.stereotypez
 
+import java.io.File
+import java.nio.file.Files
+
 import org.junit._
 import Assert._
-import org.dcm4che3.data.{Attributes, ElementDictionary, Tag, VR}
-import org.dcm4che3.io.DicomInputStream
+import org.dcm4che3.data.{Attributes, Tag, VR}
+import org.dcm4che3.io.{DicomInputStream}
 
 
 @Test
@@ -15,6 +18,7 @@ class Tests {
     val att = din.readDataset(-1, -1)
     (fmi, att)
   }
+
 
   @Test
   def test01() = {

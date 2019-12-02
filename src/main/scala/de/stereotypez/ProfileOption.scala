@@ -33,6 +33,9 @@ object CleanDescOption extends ProfileOption {
 object RetainDeviceIdentOption extends ProfileOption {
   def apply(d: Deidentifier): Option[ActionCode] = d.cpa.retainDeviceIdentOption
 }
+object RetainInstIdentOption extends ProfileOption {
+  def apply(d: Deidentifier): Option[ActionCode] = d.cpa.retainInstIdentOption
+}
 object CleanStructContOption extends ProfileOption {
   def apply(d: Deidentifier): Option[ActionCode] = d.cpa.cleanStructContOption
 }

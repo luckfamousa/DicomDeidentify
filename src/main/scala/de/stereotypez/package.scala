@@ -19,20 +19,21 @@ package object stereotypez {
   def loadConfidentialityProfileAttributes(): Seq[Deidentifier] = {
 
     implicit val format = jsonFormat(ConfidentialityProfileAttribute.apply,
-      "Retain Long. Modif. Dates Option",
-      "Retain Long. Full Dates Option",
-      "Basic Profile",
-      "Retain UIDs Option",
-      "Clean Graph. Option",
-      "Retain Patient Chars. Option",
-      "Attribute Name",
-      "Tag",
-      "Retain Safe Private Option",
-      "In Std. Comp. IOD (from PS3.3)",
-      "Clean Desc. Option",
-      "Retired (from PS3.6)",
-      "Retain Device Ident. Option",
-      "Clean Struct. Cont. Option"
+"Attribute Name",
+"Tag",
+"Retd. (from PS3.6)",
+"In Std. Comp. IOD (from PS3.3)",
+"Basic Prof.",
+"Rtn. Safe Priv. Opt.",
+"Rtn. UIDs Opt.",
+"Rtn. Dev. Id. Opt.",
+"Rtn. Inst. Id. Opt.",
+"Rtn. Pat. Chars. Opt.",
+"Rtn. Long. Full Dates Opt.",
+"Rtn. Long. Modif. Dates Opt.",
+"Clean Desc. Opt.",
+"Clean Struct. Cont. Opt.",
+"Clean Graph. Opt."
     )
 
     // modified from https://github.com/neurosnap/dicom_codify/blob/master/json/deidentify.json
@@ -43,7 +44,7 @@ package object stereotypez {
 
     jsn.convertTo[List[ConfidentialityProfileAttribute]] map { d =>
       d.tag match {
-        case "(odd,xxxx)"                        => OddGroupDeidentifier(d)
+        case _ if d.tag.contains("odd")          => OddGroupDeidentifier(d)
         case tagFmt(g, e) if d.tag.contains("x") => RangeDeidentifier(g, e, d)
         case tagFmt(g, e)                        => TagDeidentifier(g, e, d)
       }
