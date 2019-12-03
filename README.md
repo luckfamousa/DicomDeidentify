@@ -1,3 +1,5 @@
+CI/CD Status: [![Build Status](https://github.com/luckfamousa/DicomDeidentify/workflows/CICD/badge.svg)](https://github.com/luckfamousa/DicomDeidentify/actions?query=workflow%3ACICD)
+
 # DICOM De-Identify
 
 A small and configurable Scala library to de-identify DICOM files according to http://dicom.nema.org/medical/dicom/current/output/html/part15.html#table_E.1-1.
