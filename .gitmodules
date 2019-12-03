@@ -1,0 +1,3 @@
+[submodule "dicom_codify"]
+	path = dicom_codify
+	url = https://github.com/neurosnap/dicom_codify.git
