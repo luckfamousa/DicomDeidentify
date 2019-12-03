@@ -1,12 +1,16 @@
-name: Java CI
+name: CI/CD
 
 on: [push]
 
 jobs:
+
+  checkout-submodules:
+    steps:
+    - uses: srt32/git-actions@v0.0.3
+    - args: git submodule update --init --recursive
+
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Set up JDK 1.8
