@@ -14,6 +14,12 @@ jobs:
       with:
         args: git submodule update --init --recursive
 
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - run: pip3 install -r dicom_codify/requirements.txt
+
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
