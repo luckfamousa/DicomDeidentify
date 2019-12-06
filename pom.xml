@@ -75,6 +75,14 @@
     </repository>
   </repositories>
 
+  <distributionManagement>
+    <repository>
+      <id>github.packages</id>
+      <name>GitHub Package Repository</name>
+      <url>https://github.com</url>
+    </repository>
+  </distributionManagement>
+
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>
