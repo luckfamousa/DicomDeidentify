@@ -32,4 +32,4 @@ jobs:
       run: mvn -B package --file pom.xml
     
     - name: Deploy to GitHub packages
-      run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa -Dtoken=GH_TOKEN
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa -Dtoken=${{ secrets.GITHUB_TOKEN }}
