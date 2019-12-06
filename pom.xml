@@ -75,12 +75,12 @@
     </repository>
   </repositories>
 
-  <!-- -->
+  <!-- GitHub Packages -->
   <distributionManagement>
     <repository>
-      <id>github.packages</id>
-      <name>GitHub Package Repository</name>
-      <url>https://maven.pkg.github.com/luckfamousa</url>
+      <id>github</id>
+      <name>GitHub luckfamousa Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/luckfamousa/DicomDeidentify</url>
     </repository>
   </distributionManagement>
 
