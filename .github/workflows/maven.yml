@@ -32,5 +32,5 @@ jobs:
       run: mvn -B package --file pom.xml
     
     - name: Deploy to GitHub packages
-      #run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa -Dtoken=${{ secrets.GITHUB_TOKEN }}
-      run: mvn deploy:deploy-file -DrepositoryId=github -Dfile=target/DicomDeidentify-0.0.1.jar -Durl=https://maven.pkg.github.com/luckfamousa/DicomDeidentify -DpomFile=pom.xml -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa/DicomDeidentify -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      #run: mvn deploy:deploy-file -DrepositoryId=github -Dfile=target/DicomDeidentify-0.0.1.jar -Durl=https://maven.pkg.github.com/luckfamousa/DicomDeidentify -DpomFile=pom.xml -Dtoken=${{ secrets.GITHUB_TOKEN }}
