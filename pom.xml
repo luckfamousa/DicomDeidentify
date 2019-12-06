@@ -58,6 +58,11 @@
       <artifactId>spray-json_2.12</artifactId>
       <version>1.3.5</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.scopt</groupId>
+      <artifactId>scopt_2.11</artifactId>
+      <version>4.0.0-RC2</version>
+    </dependency>
     <!-- Test -->
     <dependency>
       <groupId>junit</groupId>
