@@ -80,7 +80,7 @@
     <repository>
       <id>github.packages</id>
       <name>GitHub Package Repository</name>
-      <url>https://github.com</url>
+      <url>https://maven.pkg.github.com/luckfamousa</url>
     </repository>
   </distributionManagement>
 
