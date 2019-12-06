@@ -75,6 +75,7 @@
     </repository>
   </repositories>
 
+  <!-- -->
   <distributionManagement>
     <repository>
       <id>github.packages</id>
