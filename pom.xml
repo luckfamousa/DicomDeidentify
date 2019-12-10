@@ -75,7 +75,7 @@
     </repository>
   </repositories>
 
-  <!-- GitHub Packages
+  <!-- GitHub Packages -->
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -83,7 +83,6 @@
       <url>https://maven.pkg.github.com/luckfamousa/DicomDeidentify</url>
     </repository>
   </distributionManagement>
-  -->
 
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
