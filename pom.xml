@@ -98,7 +98,7 @@
   </pluginRepositories>
 
   <distributionManagement>
-    <!-- GitHub Packages -->
+    <!-- GitHub Packages  -->
     <repository>
       <id>github</id>
       <name>GitHub luckfamousa Apache Maven Packages</name>
