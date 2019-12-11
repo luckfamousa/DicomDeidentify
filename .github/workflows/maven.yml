@@ -37,9 +37,9 @@ jobs:
       #run: mvn deploy:deploy-file -DrepositoryId=github -Dfile=target/DicomDeidentify-0.0.1.jar -Durl=https://maven.pkg.github.com/luckfamousa/DicomDeidentify -DpomFile=pom.xml -Dtoken=${{ secrets.GITHUB_TOKEN }}
 
     - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
-        with:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}
+      uses: samuelmeuli/action-maven-publish@v1
+      with:
+        gpg_private_key: ${{ secrets.gpg_private_key }}
+        gpg_passphrase: ${{ secrets.gpg_passphrase }}
+        nexus_username: ${{ secrets.nexus_username }}
+        nexus_password: ${{ secrets.nexus_password }}
