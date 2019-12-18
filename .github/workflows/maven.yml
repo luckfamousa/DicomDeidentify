@@ -33,6 +33,7 @@ jobs:
     
 #    - name: Deploy to GitHub packages
 #      run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa -Dtoken=${{ secrets.GITHUB_TOKEN }} -s settings.xml
+#
 
     - name: Release Maven package
       uses: samuelmeuli/action-maven-publish@v1
