@@ -4,12 +4,15 @@ import java.time.{LocalDate, LocalDateTime, ZoneId}
 import java.util.Date
 
 import de.stereotypez.ActionCode.ActionCodeFormat
+import org.slf4j.LoggerFactory
 
 import scala.io.{BufferedSource, Source}
 import spray.json.DefaultJsonProtocol._
 import spray.json._
 
 package object stereotypez {
+
+  private val LOG = LoggerFactory.getLogger(classOf[Deidentify])
 
   implicit def toLocalDate(dateToConvert: Date): LocalDate = dateToConvert.toInstant.atZone(ZoneId.systemDefault).toLocalDate
   implicit def toDate(dateToConvert: LocalDate) : Date = java.util.Date.from(dateToConvert.atStartOfDay.atZone(ZoneId.systemDefault).toInstant)
@@ -39,6 +42,7 @@ package object stereotypez {
     // modified from https://github.com/neurosnap/dicom_codify/blob/master/json/deidentify.json
     val src = Source.fromInputStream(getClass.getResourceAsStream("/deidentify.json"))
     val jsnStr = try src.mkString finally src.close()
+
     val jsn = jsnStr.parseJson
     val tagFmt = """\(\s*([\p{XDigit}x]{4})\s*,\s*([\p{XDigit}x]{4})\s*\)""".r
 
