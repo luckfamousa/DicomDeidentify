@@ -7,12 +7,12 @@ jobs:
   build:
     strategy:
       matrix:
-        scala: ["2.12", "2.13"]
+        scala_version: ["2.12", "2.13"]
     
     runs-on: ubuntu-latest
 
     env:
-      MAVEN_OPTS: -Dscala.version=${{ format('{0}.0', matrix.scala) }} -Dscala.compat.version=${{ matrix.scala }}
+      SCALA_VERSION: ${{ scala_version }}
 
     steps:
     - uses: actions/checkout@v1
