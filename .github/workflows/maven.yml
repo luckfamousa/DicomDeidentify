@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SCALA_VERSION: ${{ scala_version }}
+      SCALA_VERSION: ${{ matrix.scala_version }}
 
     steps:
     - uses: actions/checkout@v1
