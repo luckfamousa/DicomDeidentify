@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.stereotypez</groupId>
-  <artifactId>DicomDeidentify</artifactId>
+  <artifactId>DicomDeidentify_${scala.compat.version}</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
 
@@ -24,6 +24,11 @@
       <name>Felix Nensa</name>
       <email>felix.nensa@gmail.com</email>
       <organizationUrl>https://twitter.com/FelixNensa</organizationUrl>
+    </developer>
+    <developer>
+      <name>Moritz Ulrich</name>
+      <email>moritz@tarn-vedra.de</email>
+      <organizationUrl>https://tarn-vedra.de</organizationUrl>
     </developer>
   </developers>
 
