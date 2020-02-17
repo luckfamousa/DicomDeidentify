@@ -34,7 +34,7 @@ jobs:
         java-version: 1.8
 
     - name: Build with Maven
-      run: mvn -Dscala.version=${{ matrix.scala }} -Dscala.compat.version=${{ matrix.scala }} -B package --file pom.xml
+      run: mvn -Dscala.version=${{ format("{0}.0", matrix.scala) }} -Dscala.compat.version=${{ matrix.scala }} -B package --file pom.xml
     
 #    - name: Deploy to GitHub packages
 #      run: mvn deploy -Dregistry=https://maven.pkg.github.com/luckfamousa -Dtoken=${{ secrets.GITHUB_TOKEN }} -s settings.xml
