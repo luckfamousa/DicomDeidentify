@@ -40,6 +40,7 @@ jobs:
       run: mvn -B test
     
     - name: Release Maven package
+      if: github.ref == 'refs/heads/master'
       uses: samuelmeuli/action-maven-publish@v1
       with:
         gpg_private_key: ${{ secrets.gpg_private_key }}
