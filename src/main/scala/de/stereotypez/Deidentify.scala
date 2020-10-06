@@ -4,11 +4,10 @@ import java.time.{Duration, LocalDate, LocalTime}
 import java.util.Date
 
 import org.dcm4che3.data.{Attributes, Tag, VR}
-import org.dcm4che3.util.UIDUtils
+import org.dcm4che3.util.{TagUtils, UIDUtils}
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-
 import ActionCode._
 
 object Deidentify {
@@ -184,13 +183,11 @@ class Deidentify() {
       // apply special handlers and skip if one returns true
       case tag if _specialHandlers.exists(_(att, tag, dsf, tsf)) => ()
 
-      /*
-      // recurse over sequences (correct??)
+      // recurse over sequences
       case tag if VR.SQ == att.getVR(tag) =>
         att.getSequence(tag) forEach { seqatt =>
           deidentify(seqatt, dsf, tsf)
         }
-      */
 
       // apply DICOM Supp. 142 logic
       case tag =>

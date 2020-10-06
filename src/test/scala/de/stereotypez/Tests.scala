@@ -1,27 +1,33 @@
 package de.stereotypez
 
-import java.io.File
-import java.nio.file.Files
+import java.io.{File, FileInputStream, InputStream}
 
-import org.junit._
-import Assert._
 import org.dcm4che3.data.{Attributes, Tag, VR}
-import org.dcm4che3.io.{DicomInputStream}
+import org.dcm4che3.io.DicomInputStream
+import org.junit.Assert._
+import org.junit._
 
 
 @Test
 class Tests {
 
-  def loadTestFile(name: String): (Attributes, Attributes) = {
-    val din = new DicomInputStream(getClass.getResourceAsStream(s"/$name.dcm"))
+  def loadTest(in: InputStream): (Attributes, Attributes) = {
+    val din = new DicomInputStream(in)
     val fmi = din.readFileMetaInformation()
     val att = din.readDataset(-1, -1)
     (fmi, att)
   }
 
+  def loadTestFile(name: String): (Attributes, Attributes) = {
+    loadTest(getClass.getResourceAsStream(s"/$name.dcm"))
+  }
+
+  def loadTestFile(file: File): (Attributes, Attributes) = {
+    loadTest(new FileInputStream(file))
+  }
 
   @Test
-  def test01() = {
+  def test01(): Unit = {
 
     val name01 = "test01"
     val (fmi, att) = loadTestFile(name01)
@@ -111,7 +117,7 @@ class Tests {
     assertEquals(Util.msDiff(att, Tag.StudyTime, Tag.InstanceCreationTime), instCreaT)
   }
 
-  def printSummary(att: Attributes) = {
+  def printSummary(att: Attributes): Unit = {
 
     println("-----------------------------------")
     println(s"PatientName: ${att.getString(Tag.PatientName)}")

@@ -21,7 +21,7 @@ package object stereotypez {
 
   def loadConfidentialityProfileAttributes(): Seq[Deidentifier] = {
 
-    implicit val format = jsonFormat(ConfidentialityProfileAttribute.apply,
+    implicit val format: RootJsonFormat[ConfidentialityProfileAttribute] = jsonFormat(ConfidentialityProfileAttribute.apply,
 "Attribute Name",
 "Tag",
 "Retd. (from PS3.6)",
