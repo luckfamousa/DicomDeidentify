@@ -1,3 +1,12 @@
+// // // //
+
+Project moved to --> https://github.com/UMEssen/DicomDeidentify
+
+// // // //
+
+
+
+
 CI/CD Status: [![Build Status](https://github.com/luckfamousa/DicomDeidentify/workflows/CICD/badge.svg)](https://github.com/luckfamousa/DicomDeidentify/actions?query=workflow%3ACICD)
 
 # DICOM De-Identify
